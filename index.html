@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Syafac Pink Beauty — Makeup Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #F7C6D6; --rose: #C98A97; --baby: #FFD6E8; --gold: #C9A36A;
+      --text: #3A2B33; --muted: #6B5662; --border: rgba(201,138,151,.25);
+      --shadow: 0 10px 25px rgba(201,138,151,.14); --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Quicksand", sans-serif; color: var(--text);
+      background: radial-gradient(900px 400px at 15% 0%, rgba(247,198,214,.35), transparent 60%),
+                  radial-gradient(800px 360px at 90% 20%, rgba(255,214,232,.35), transparent 55%), #fff;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); background: rgba(255,255,255,.85); border-bottom: 1px solid var(--border); }
+    .nav, .container, .footer { max-width: 1120px; margin: 0 auto; padding: 14px 16px; }
+    .nav, .navlinks, .search, .btn-row, .section-title, .meta, .card-actions, .who, .modal-swatches { display: flex; align-items: center; gap: 12px; }
+    .nav { justify-content: space-between; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: "Playfair Display", serif; font-weight: 700; font-size: 19px; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--baby), var(--rose)); display: grid; place-items: center; }
+    .navlinks a { font-family: "Poppins", sans-serif; font-size: 13.5px; font-weight: 600; color: var(--muted); padding: 8px 10px; border-radius: 99px; transition: .2s; }
+    .navlinks a:hover { background: rgba(247,198,214,.35); color: var(--text); }
+    .search { padding: 8px 14px; border-radius: 99px; border: 1px solid var(--border); background: #fff; min-width: 210px; }
+    .search input, .filter select { border: none; outline: none; background: transparent; font-family: "Poppins", sans-serif; font-size: 13px; color: var(--text); width: 100%; }
+
+    /* Buttons & Badges */
+    .btn, .cart-btn, .btn-small {
+      cursor: pointer; border-radius: 14px; font-family: "Poppins", sans-serif; font-weight: 600;
+      border: 1px solid var(--border); transition: .2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;
+    }
+    .btn { padding: 12px 18px; }
+    .cart-btn { padding: 8px 14px; border-radius: 99px; background: #fff; }
+    .btn-primary, .btn-small.primary { background: linear-gradient(135deg, var(--baby), var(--rose)); color: #2C1F27; font-weight: 700; }
+    .btn-ghost, .btn-small { background: rgba(255,255,255,.9); color: var(--text); }
+    .btn:hover, .cart-btn:hover, .btn-small:hover, .card:hover, .cat:hover, .post:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--rose); }
+    .badge, .cart-count { background: rgba(247,198,214,.35); color: var(--rose); border: 1px solid var(--border); border-radius: 99px; font-size: 11px; font-weight: 700; padding: 4px 10px; font-family: "Poppins", sans-serif; }
+
+    /* Shared Cards */
+    .hero-card, .hero-visual, .cat, .card, .quote, .panel, .post {
+      background: rgba(255,255,255,.85); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); transition: .25s;
+    }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; padding: 18px 0; align-items: center; }
+    .hero-card { padding: 28px; border-radius: 22px; }
+    .hero h1 { font-family: "Playfair Display", serif; font-size: 36px; line-height: 1.15; margin: 12px 0; }
+    .hero p, .panel p, .panel li, .post p, .quote p { color: var(--muted); font-family: "Poppins", sans-serif; font-size: 13.5px; line-height: 1.65; margin-bottom: 14px; }
+    .hero-visual { padding: 16px; position: relative; border-radius: 22px; }
+    .hero-visual img { border-radius: 16px; width: 100%; }
+    .float-icons { position: absolute; top: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .bubble, .emoji, .avatar { width: 42px; height: 42px; border-radius: 14px; background: rgba(255,214,232,.55); border: 1px solid var(--border); display: grid; place-items: center; font-size: 19px; }
+
+    /* Sections */
+    .section-title { justify-content: space-between; margin: 30px 0 14px; }
+    .section-title h2 { font-family: "Playfair Display", serif; font-size: 24px; }
+    .section-title p { color: var(--muted); font-family: "Poppins", sans-serif; font-size: 13px; }
+
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .cat { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .cat strong, .card-title strong, .post strong { font-family: "Poppins", sans-serif; font-size: 14.5px; }
+    .cat span { color: var(--muted); font-size: 12.5px; }
+
+    /* Shop & Cards */
+    .product-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .filter { background: #fff; border: 1px solid var(--border); border-radius: 99px; padding: 8px 14px; display: flex; gap: 8px; align-items: center; font-family: "Poppins", sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); }
+    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card { overflow: hidden; display: flex; flex-direction: column; }
+    .card-media { background: linear-gradient(180deg, rgba(255,214,232,.35), #fff); padding: 14px; display: grid; place-items: center; height: 180px; cursor: pointer; position: relative; }
+    .card-media img { height: 150px; object-fit: contain; border-radius: 12px; transition: .3s; }
+    .card:hover .card-media img { transform: scale(1.05); }
+    .card-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .card-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; cursor: pointer; }
+    .price { font-family: "Poppins", sans-serif; font-weight: 700; color: #2C1F27; }
+    .swatch { width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(0,0,0,.15); }
+    .card-actions { margin-top: auto; }
+    .btn-small { padding: 9px 10px; flex: 1; }
+    .wishlist { flex: 0 0 42px; }
+
+    /* Grids & Panels */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .quote, .panel { padding: 16px; }
+    .panel h3 { font-family: "Playfair Display", serif; margin-bottom: 10px; font-size: 20px; }
+    .panel ul { padding-left: 18px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .team { text-align: center; padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,214,232,.18); }
+    .post .thumb { height: 130px; background: linear-gradient(135deg, rgba(255,214,232,.6), rgba(201,138,151,.25)); display: grid; place-items: center; font-size: 40px; }
+    .post .content { padding: 14px; }
+
+    /* Forms */
+    form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+    .field label { font-family: "Poppins", sans-serif; font-weight: 600; font-size: 13px; }
+    .field input, .field textarea { border-radius: 12px; border: 1px solid var(--border); padding: 10px; font-family: "Poppins", sans-serif; outline: none; font-size: 13px; }
+
+    /* Product Detail Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(58,43,51,.5); backdrop-filter: blur(4px);
+      display: none; place-items: center; z-index: 1000; padding: 16px;
+    }
+    .modal-box {
+      background: #fff; border: 1px solid var(--border); border-radius: 22px; max-width: 780px; width: 100%;
+      max-height: 90vh; overflow-y: auto; padding: 24px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,.18);
+    }
+    .close-modal { position: absolute; top: 16px; right: 16px; background: var(--baby); border: none; width: 34px; height: 34px; border-radius: 50%; font-weight: 700; cursor: pointer; }
+    .modal-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; align-items: start; }
+    .gallery-box { background: rgba(255,214,232,.25); border-radius: 16px; padding: 14px; text-align: center; border: 1px solid var(--border); }
+    .gallery-box img { height: 240px; margin: 0 auto 10px; object-fit: contain; border-radius: 12px; }
+    .gallery-thumbs { display: flex; justify-content: center; gap: 8px; }
+    .gallery-thumbs button { border: 1px solid var(--border); background: #fff; padding: 4px 10px; border-radius: 99px; font-size: 12px; cursor: pointer; font-family: "Poppins", sans-serif; }
+    .gallery-thumbs button.active { background: var(--rose); color: #fff; }
+    .shade-btn { padding: 6px 12px; border-radius: 99px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 12px; font-family: "Poppins", sans-serif; display: flex; align-items: center; gap: 6px; }
+    .shade-btn.active { border-color: var(--rose); background: rgba(247,198,214,.35); font-weight: 700; }
+    .modal-extra { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+    .rec-item { border: 1px solid var(--border); border-radius: 12px; padding: 8px; text-align: center; cursor: pointer; font-size: 12px; font-family: "Poppins", sans-serif; }
+    .rec-item img { height: 70px; margin: 0 auto 6px; object-fit: contain; }
+
+    /* Footer & Toast */
+    footer { margin-top: 30px; border-top: 1px solid var(--border); background: rgba(255,255,255,.75); }
+    .footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    #toastBox { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid var(--rose); box-shadow: var(--shadow); padding: 12px 18px; border-radius: 14px; font-family: "Poppins", sans-serif; font-weight: 600; font-size: 13px; display: none; z-index: 1100; }
+
+    @media (max-width: 900px) {
+      .hero, .two-col, .grid-3, .modal-grid, form .row { grid-template-columns: 1fr; }
+      .grid-5, .products { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">💗</div>
+        <span>Syafac <span style="color:var(--gold)">Pink</span> <em>Beauty</em></span>
+      </div>
+      <div class="search">
+        <span>🔎</span>
+        <input id="searchInput" type="text" placeholder="Cari cushion, lip serum..." oninput="applyFilters()" />
+      </div>
+      <div class="navlinks">
+        <a href="#home">Beranda</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Kontak</a>
+        <button class="cart-btn" onclick="toast('🛒 Keranjang: ' + cartTotal + ' item')">
+          Keranjang <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero-card">
+        <span class="badge">✨ Aman • Nyaman • Terjangkau</span>
+        <h1>Temukan Makeup Impianmu dengan Sentuhan Syafac Pink Beauty</h1>
+        <p>Girly, clean, dan elegan—dirancang khusus untuk menemani perempuan muda tampil percaya diri dengan produk pilihan terbaik setiap hari.</p>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">💖 Belanja Sekarang</button>
+          <button class="btn btn-ghost" onclick="toast('🎀 Kode Promo: SYAFACPINK20')">🎀 Klaim Promo</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-icons"><div class="bubble">💄</div><div class="bubble">👁️</div><div class="bubble">🖌️</div></div>
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Model Makeup Syafac Pink Beauty" />
+      </div>
+    </section>
+
+    <!-- Highlight Kategori -->
+    <div class="section-title"><h2>Kategori Pilihan</h2><p>Temukan favoritmu ✨</p></div>
+    <section class="grid-5">
+      <a class="cat" href="#shop" onclick="setCategory('Cushion & Bedak')"><div class="emoji">✨</div><strong>Cushion & Bedak</strong><span>Flawless & matte finish</span></a>
+      <a class="cat" href="#shop" onclick="setCategory('Lips')"><div class="emoji">💄</div><strong>Lips</strong><span>Serum & lip tint lembut</span></a>
+      <a class="cat" href="#shop" onclick="setCategory('Blush On')"><div class="emoji">🌸</div><strong>Blush On</strong><span>Rona segar alami</span></a>
+      <a class="cat" href="#shop" onclick="setCategory('Eyeshadow')"><div class="emoji">👁️</div><strong>Eyeshadow</strong><span>Pigmented & glam</span></a>
+      <a class="cat" href="#shop" onclick="setCategory('Setting Spray')"><div class="emoji">💧</div><strong>Setting Spray</strong><span>Makeup tahan seharian</span></a>
+    </section>
+
+    <!-- Promo & Testimoni -->
+    <div class="section-title"><h2>Promo Terbaru & Testimoni</h2><p>Penawaran spesial & ulasan pembeli 💗</p></div>
+    <section class="grid-3">
+      <div class="quote"><p>🎀 <b>Promo Spesial:</b> Diskon 20% untuk pembelian produk Skintific & Esqa pilihan!</p><div class="who"><div class="avatar">💞</div><div><strong>Syafac Deal</strong></div></div></div>
+      <div class="quote"><p>“Skintific Cushion pink shade Vanilla-nya pas banget di kulit, bikin glowing natural!”</p><div class="who"><div class="avatar">🙂</div><div><strong>Rara A. • 5⭐</strong></div></div></div>
+      <div class="quote"><p>“Esqa Liquid Blush Spring Fling gampang di-blend dan bikin wajah kelihatan fresh.”</p><div class="who"><div class="avatar">💗</div><div><strong>Nabila S. • 5⭐</strong></div></div></div>
+    </section>
+
+    <!-- Shop Page -->
+    <section id="shop">
+      <div class="section-title"><h2>Katalog Produk</h2><p>Klik produk untuk lihat detail, shade & review 🎀</p></div>
+      <div class="product-toolbar">
+        <div class="filter">🏷️
+          <select id="categoryFilter" onchange="applyFilters()">
+            <option value="all">Semua Kategori</option><option>Cushion & Bedak</option><option>Lips</option><option>Blush On</option><option>Eyeshadow</option><option>Setting Spray</option>
+          </select>
+        </div>
+        <div class="filter">💰
+          <select id="priceFilter" onchange="applyFilters()">
+            <option value="all">Semua Harga</option><option value="60000">≤ Rp 60.000</option><option value="100000">≤ Rp 100.000</option><option value="200000">≤ Rp 200.000</option>
+          </select>
+        </div>
+        <div class="filter">🎨
+          <select id="colorFilter" onchange="applyFilters()">
+            <option value="all">Semua Warna</option><option value="pink">Pink</option><option value="nude">Nude</option><option value="coral">Coral</option><option value="rose">Rose</option>
+          </select>
+        </div>
+        <button class="btn btn-ghost" style="padding: 8px 14px;" onclick="resetFilters()">↩️ Reset</button>
+      </div>
+      <div class="products" id="productsGrid"></div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="about">
+      <div class="section-title"><h2>Tentang Kami</h2><p>Cerita & visi misi Syafac Pink Beauty ✨</p></div>
+      <div class="two-col">
+        <div class="panel">
+          <h3>Syafac Pink Beauty</h3>
+          <p>Lahir dari kecintaan pada estetika feminin yang lembut dan modern, Syafac Pink Beauty menghadirkan rangkaian kosmetik pilihan berkualitas tinggi yang ramah di kantong perempuan.</p>
+          <ul>
+            <li>🌸 <b>Visi & Misi:</b> Menemani perempuan tampil percaya diri dengan makeup yang aman dan terjangkau.</li>
+            <li>💗 <b>Kualitas Teruji:</b> Formula ringan, BPOM-approved, dan nyaman dipakai seharian.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Tim Kreatif Kami</h3>
+          <p>Dikelola oleh tim muda yang berdedikasi tinggi menyajikan kurasi produk terbaik.</p>
+          <div class="grid-3">
+            <div class="team"><div style="font-size:28px;">👩‍💼</div><strong>Raisya</strong><br><small>Founder & CEO</small></div>
+            <div class="team"><div style="font-size:28px;">🧴</div><strong>Queena</strong><br><small>Product Formulator</small></div>
+            <div class="team"><div style="font-size:28px;">👩‍🎨</div><strong>Khaila</strong><br><small>Staf</small></div>
+            <div class="team"><div style="font-size:28px;">👩‍🎨</div><strong>Suchanda</strong><br><small>Staf</small></div>
+            <div class="team"><div style="font-size:28px;">👩‍🎨</div><strong>Andini</strong><br><small>Staf</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <div class="section-title"><h2>Beauty Journal (Blog)</h2><p>Tips makeup, review & tutorial look of the day 🎀</p></div>
+      <div class="grid-3">
+        <article class="post"><div class="thumb">🎀</div><div class="content"><strong>Tips Kulit Glowing dengan Skintific Cushion</strong><p>Cara meratakan cushion pink shade Vanilla agar hasilnya halus seharian.</p><button class="btn-small" onclick="toast('📖 Membuka artikel...')">Baca Selengkapnya</button></div></article>
+        <article class="post"><div class="thumb">👁️</div><div class="content"><strong>Esqa Spring Fling vs Gogo Tales Sweet Lychee</strong><p>Pilih liquid blush atau powder blush untuk rona pipi natural?</p><button class="btn-small" onclick="toast('📖 Membuka artikel...')">Baca Selengkapnya</button></div></article>
+        <article class="post"><div class="thumb">💄</div><div class="content"><strong>Look of the Day: Fresh Korean Glass Skin</strong><p>Kombinasi Skintific Lip Serum dan Maange Lip Tint P601.</p><button class="btn-small" onclick="toast('📖 Membuka artikel...')">Baca Selengkapnya</button></div></article>
+      </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact">
+      <div class="section-title"><h2>Kontak Kami</h2><p>Ada pertanyaan seputar shade atau pesanan? Hubungi kami 💗</p></div>
+      <div class="two-col">
+        <div class="panel">
+          <h3>Kirim Pesan</h3>
+          <form onsubmit="event.preventDefault(); toast('✅ Pesanmu terkirim ke tim Syafac!'); this.reset();">
+            <div class="row">
+              <div class="field"><label>Nama Lengkap</label><input type="text" placeholder="Nama kamu" required /></div>
+              <div class="field"><label>Email / WhatsApp</label><input type="text" placeholder="08xx / email@domain.com" required /></div>
+            </div>
+            <div class="field"><label>Pesan</label><textarea rows="3" placeholder="Tulis pertanyaan atau saranmu..." required></textarea></div>
+            <button class="btn btn-primary" type="submit">📩 Kirim Pesan</button>
+          </form>
+        </div>
+        <div class="panel">
+          <h3>Informasi & Media Sosial</h3>
+          <ul>
+            <li>📧 Email: <b>hello@syafacpinkbeauty.id</b></li>
+            <li>📱 WhatsApp: <b>+62 821-2572-0879</b></li>
+            <li>📍 Studio: <b>Bekasi, Indonesia</b></li>
+          </ul>
+          <div class="btn-row" style="margin-top:16px; flex-wrap:wrap;">
+            <a class="btn btn-ghost" href="#" onclick="toast('📸 Membuka Instagram @syafacpinkbeauty')">📸 Instagram</a>
+            <a class="btn btn-ghost" href="#" onclick="toast('🎵 Membuka TikTok @syafacpinkbeauty')">🎵 TikTok</a>
+            <a class="btn btn-ghost" href="#" onclick="toast('🛍️ Membuka Shopee Official Store')">🛍️ Shopee</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer">
+      <small>© <span id="year"></span> Syafac Pink Beauty. All rights reserved.</small>
+      <div class="btn-row">
+        <a href="#" onclick="toast('📸 Instagram')">Instagram</a> •
+        <a href="#" onclick="toast('🎵 TikTok')">TikTok</a> •
+        <a href="#" onclick="toast('🛍️ Shopee')">Shopee</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Detail Produk -->
+  <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeModal()">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeModal()">✕</button>
+      <div class="modal-grid">
+        <div class="gallery-box">
+          <img id="modalImg" src="" alt="Preview Produk" />
+          <div class="gallery-thumbs" id="modalThumbs"></div>
+        </div>
+        <div>
+          <span class="badge" id="modalBadge">Best Seller</span>
+          <h2 id="modalTitle" style="font-family:'Playfair Display',serif; margin:8px 0;"></h2>
+          <p class="price" id="modalPrice" style="font-size:18px; margin-bottom:10px;"></p>
+          <p id="modalDesc" style="font-family:'Poppins',sans-serif; font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:14px;"></p>
+          
+          <div style="margin-bottom:14px;">
+            <strong style="font-family:'Poppins',sans-serif; font-size:13px; display:block; margin-bottom:6px;">Pilih Varian / Shade:</strong>
+            <div class="modal-swatches" id="modalShades" style="flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" id="modalAddBtn" style="flex:1;">🛒 Tambah ke Keranjang</button>
+            <button class="btn btn-ghost" onclick="toast('💖 Disimpan ke Wishlist')">🤍 Wishlist</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-extra">
+        <strong style="font-family:'Poppins',sans-serif; font-size:14px;">⭐ Review Pembeli:</strong>
+        <p id="modalReview" style="font-family:'Poppins',sans-serif; font-size:12.5px; color:var(--muted); margin:6px 0 14px; background:rgba(255,214,232,.2); padding:10px; border-radius:10px;"></p>
+        
+        <strong style="font-family:'Poppins',sans-serif; font-size:14px;">✨ Rekomendasi Produk Serupa:</strong>
+        <div class="rec-grid" id="modalRecs"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastBox"></div>
+
+  <script>
+    const products = [
+      {
+        id: 1, name: "Skintific Cover Cushion Pink", category: "Cushion & Bedak", price: 157000, color: "pink", swatch: "#F3D6C6", badge: "Best Seller",
+        imgs: ["https://enviostore.com/media/product/6989/product_image-1764138105.jpg"],
+        desc: "Cushion edisi pink spesial dengan coverage tinggi, terasa ringan, dan memberikan hasil glowing natural.",
+        shades: [{name:"01 Vanilla", hex:"#F3D6C6"}, {name:"02 Ivory", hex:"#E8C4B0"}],
+        review: "“Shade 01 Vanilla pas banget di kulit terangku, glowingnya natural seharian!” — Syala (5⭐)"
+      },
+      {
+        id: 2, name: "Esqa Wonder Crush Liquid Blush", category: "Blush On", price: 87000, color: "pink", swatch: "#F472B6", badge: "Favorite",
+        imgs: ["https://www.sociolla.com/cdn-cgi/image/w=500,format=auto,dpr=1.45/https://images.soco.id/05dac449-b0bd-4a91-a091-d894cd9e7184-image-1-1724214570750"],
+        desc: "Serum liquid blush bertekstur cair ringan yang memberikan rona segar merona secara instan.",
+        shades: [{name:"Spring Fling", hex:"#F472B6"}, {name:"Peach Pink", hex:"#F6AD55"}],
+        review: "“Shade Spring Fling bikin pipi pink merona segar kayak idol Korea!” — Clarissa (5⭐)"
+      },
+      {
+        id: 3, name: "Skintific Brightening Lip Serum", category: "Lips", price: 72000, color: "nude", swatch: "#FBCFE8", badge: "New",
+        imgs: ["https://images.soco.id/93cfcfcf-9d13-4b66-9d44-2a9ef1fbb76d-image-0-1751258555668"],
+        desc: "Serum bibir menutrisi untuk melembapkan, merawat bibir kering, dan mencerahkan warna bibir.",
+        shades: [{name:"Natural Care", hex:"#FBCFE8"}],
+        review: "“Bibir jadi lembut dan nggak gampang pecah-pecah lagi.” — Syifa (4.9⭐)"
+      },
+      {
+        id: 4, name: "Judydoll Oil Control Pressed Powder", category: "Cushion & Bedak", price: 73000, color: "nude", swatch: "#E5D3B3", badge: "Popular",
+        imgs: ["https://judydoll.com/cdn/shop/products/7_fd08bb43-9e07-4e80-b7a6-306d77e8b71c.jpg?v=1764154226&width=800"],
+        desc: "Bedak padat pembersih minyak berlebih dengan hasil akhir matte halus dan pori-pori tersamarkan.",
+        shades: [{name:"Light", hex:"#E5D3B3"}, {name:"Natural", hex:"#D4B2A7"}],
+        review: "“Ampuh banget nahan minyak di T-zone tanpa bikin cakey.” — Tasya (5⭐)"
+      },
+      {
+        id: 5, name: "Maange Satin Glow Lip Tint", category: "Lips", price: 45000, color: "pink", swatch: "#E11D48", badge: "Promo",
+        imgs: ["https://down-id.img.susercontent.com/file/id-11134207-822wh-mnf32jsigxl0f7"],
+        desc: "Lip tint satin glow yang transferproof, melembapkan, dan memberikan stain tahan lama.",
+        shades: [{name:"P601", hex:"#E11D48"}, {name:"P602", hex:"#F43F5E"}],
+        review: "“Shade P601 warnanya cerah bikin muka kelihatan hidup.” — Aldeti (5⭐)"
+      },
+      {
+        id: 6, name: "Salsa Galaxy Eyeshadow Palette", category: "Eyeshadow", price: 48000, color: "rose", swatch: "#C98A97", badge: "Cute",
+        imgs: ["https://enviostore.com/media/product/5971/product_image-1742195036.jpg"],
+        desc: "Palet eyeshadow dengan pilihan warna pigmented, mudah di-blend, dan ada sentuhan shimmer.",
+        shades: [{name:"Comet", hex:"#C98A97"}, {name:"Meteor", hex:"#D4A399"}],
+        review: "“Shade Comet cantik banget buat daily makeup kuliah!” — Lala (5⭐)"
+      },
+      {
+        id: 7, name: "Sea Makeup Stayput Glow Fix Setting Spray", category: "Setting Spray", price: 77000, color: "pink", swatch: "#FFD6E8", badge: "Best Seller",
+        imgs: ["https://down-id.img.susercontent.com/file/id-11134207-8224q-mj83dxbprz7r09"],
+        desc: "Setting spray 40ml kemasan pink untuk mengunci makeup tahan lama hingga 24 jam dengan hasil glowing.",
+        shades: [{name:"40ml Pink Edition", hex:"#FFD6E8"}],
+        review: "“Bikin makeup nempel seharian dan nggak gampang geser.” — Salsa (5⭐)"
+      },
+      {
+        id: 8, name: "Gogo Tales Blossom Matte Blush On", category: "Blush On", price: 42000, color: "coral", swatch: "#F6AD55", badge: "Favorite",
+        imgs: ["https://down-id.img.susercontent.com/file/id-11134207-7rasg-m4eagyzne2yg2a"],
+        desc: "Blush on powder matte dengan nuansa warna manis dan tekstur lembut menyatu di kulit.",
+        shades: [{name:"G01 Sweet Lychee", hex:"#F6AD55"}, {name:"G02 Peach", hex:"#F472B6"}],
+        review: "“Shade G01 Sweet Lychee manis banget di pipi!” — Neha (5⭐)"
+      }
+    ];
+
+    let cartTotal = 0;
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = items.length ? items.map(p => `
+        <div class="card">
+          <div class="card-media" onclick="openModal(${p.id})"><img src="${p.imgs[0]}" alt="${p.name}" /></div>
+          <div class="card-body">
+            <div class="card-title" onclick="openModal(${p.id})"><strong>${p.name}</strong><span class="badge">${p.badge}</span></div>
+            <div class="meta"><span class="price">Rp ${p.price.toLocaleString('id-ID')}</span><span class="swatch" style="background:${p.swatch}"></span></div>
+            <div class="card-actions">
+              <button class="btn-small primary" onclick="addToCart('${p.name}')">🛒 Beli</button>
+              <button class="btn-small wishlist" onclick="toast('💖 Wishlist')">🤍</button>
+            </div>
+          </div>
+        </div>
+      `).join('') : `<p style="grid-column:1/-1; text-align:center; padding:24px;">Produk tidak ditemukan 💭</p>`;
+    }
+
+    function openModal(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById('modalBadge').innerText = p.badge;
+      document.getElementById('modalTitle').innerText = p.name;
+      document.getElementById('modalPrice').innerText = `Rp ${p.price.toLocaleString('id-ID')}`;
+      document.getElementById('modalDesc').innerText = p.desc;
+      document.getElementById('modalReview').innerText = p.review;
+      document.getElementById('modalImg').src = p.imgs[0];
+
+      document.getElementById('modalThumbs').innerHTML = p.imgs.map((src, i) => `
+        <button class="${i===0?'active':''}" onclick="switchImg(this, '${src}')">Foto ${i+1}</button>
+      `).join('');
+
+      document.getElementById('modalShades').innerHTML = p.shades.map((s, i) => `
+        <button class="shade-btn ${i===0?'active':''}" onclick="selectShade(this)">
+          <span class="swatch" style="background:${s.hex}"></span> ${s.name}
+        </button>
+      `).join('');
+
+      document.getElementById('modalAddBtn').onclick = () => { addToCart(p.name); closeModal(); };
+
+      const recs = products.filter(item => item.id !== p.id).slice(0, 3);
+      document.getElementById('modalRecs').innerHTML = recs.map(r => `
+        <div class="rec-item" onclick="openModal(${r.id})">
+          <img src="${r.imgs[0]}" alt="${r.name}" />
+          <strong>${r.name}</strong><br>
+          <span style="color:var(--rose)">Rp ${r.price.toLocaleString('id-ID')}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('productModal').style.display = 'grid';
+    }
+
+    const closeModal = () => document.getElementById('productModal').style.display = 'none';
+    const switchImg = (btn, src) => {
+      document.getElementById('modalImg').src = src;
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+    const selectShade = (btn) => {
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    };
+
+    function applyFilters() {
+      const cat = document.getElementById('categoryFilter').value;
+      const max = document.getElementById('priceFilter').value;
+      const col = document.getElementById('colorFilter').value;
+      const txt = document.getElementById('searchInput').value.toLowerCase();
+
+      renderProducts(products.filter(p =>
+        (cat === 'all' || p.category === cat) &&
+        (max === 'all' || p.price <= +max) &&
+        (col === 'all' || p.color === col) &&
+        p.name.toLowerCase().includes(txt)
+      ));
+    }
+
+    const setCategory = cat => { document.getElementById('categoryFilter').value = cat; applyFilters(); };
+    const resetFilters = () => { ['categoryFilter','priceFilter','colorFilter'].forEach(id => document.getElementById(id).value = 'all'); document.getElementById('searchInput').value = ''; renderProducts(products); };
+    const addToCart = name => { document.getElementById('cartCount').innerText = ++cartTotal; toast(`✅ ${name} masuk keranjang!`); };
+    const toast = msg => { const t = document.getElementById('toastBox'); t.innerText = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2300); };
+
+    document.getElementById('year').innerText = new Date().getFullYear();
+    renderProducts(products);
+  </script>
+</body>
+</html>
